@@ -32,4 +32,9 @@ public class Card {
         return Red;
     }
 
+
+    @Override
+    public String toString() {
+        return Value+" of "+Symbol;
+    }
 }

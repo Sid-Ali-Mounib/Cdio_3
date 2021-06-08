@@ -5,27 +5,58 @@ public class CardSolver {
 
 
 
-    public String solveGame(ArrayList<Card> visibleCard) {
+    public ArrayList<Card>[] solveGame(ArrayList<Card>[] visibleCard) {
 
-        for (int i = 0; i < visibleCard.size() - 1; i++) {
-            for (int j = 0; j < visibleCard.size() - 1; j++) {
-                if (visibleCard.get(i).getCardValue() == visibleCard.get(j).getCardValue() - 1 && visibleCard.get(i).isCardRed() != visibleCard.get(j).isCardRed() ) {
+        System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
+        for (int i = 0; i < visibleCard.length ; i++) {
+            System.out.println(visibleCard[i].toString());
+        }
+        System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
+
+        for (int i = 0;i<visibleCard.length; i++) {
+
+            for (int j = 0; j < visibleCard[i].size(); j++) {
 
 
-                    if ( visibleCard.get(i).getCardValue() >  visibleCard.get(j).getCardValue()){
-                        return visibleCard.get(j).getCard()+" is placed on "+visibleCard.get(i).getCard();
-                    }else {
-                        return visibleCard.get(i).getCard()+" is placed on "+visibleCard.get(j).getCard();
+                for (int k = 0; k < visibleCard.length; k++) {
+                    try {
+
+                        int movingCardFrom=visibleCard[i].get(j).getCardValue();
+                        int movingCardTo=visibleCard[k].get(visibleCard[k].size()-1).getCardValue()-1;
+                        boolean cardsHaveDifferentColor = visibleCard[i].get(j).isCardRed()!=visibleCard[k].get(visibleCard[k].size()-1).isCardRed();
+                        boolean notOnTheSameRow = visibleCard[i]!=visibleCard[k];
+
+
+                        if (movingCardFrom == movingCardTo && cardsHaveDifferentColor && notOnTheSameRow){
+
+                            for (int l = j; l < visibleCard[i].size();) {
+
+                                visibleCard[k].add(visibleCard[i].get(l));
+                                visibleCard[i].remove(l);
+
+
+                            }
+
+
+
+
+                        }
+                    }catch (Exception E){
+
 
                     }
+
                 }
+
             }
         }
-        return null;
+
+        return visibleCard;
     }
 
 
-    private void checkIfPlacable(ArrayList A){
+    private void checkIfPlacable(ArrayList A, Card card){
+
 
 
     }

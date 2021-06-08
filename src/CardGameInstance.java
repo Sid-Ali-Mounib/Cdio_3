@@ -5,18 +5,28 @@ public class CardGameInstance {
 
     public void startGame(){
 
+        CardSolver Solver = new CardSolver();
+
         ArrayList<Card> visibleCard = new ArrayList<Card>();
         ArrayList<String> stringCards = new ArrayList<String>();
-        CardSolver Solver = new CardSolver();
+
+
+        ArrayList<Card>[] lists =new ArrayList[7];
+
+
+
+
+
 
     stringCards.add("Hearts 6");
     stringCards.add("Spades 10");
-    stringCards.add("Clubs 4");
+    stringCards.add("Hearts 4");
     stringCards.add("Diamonds 3");
     stringCards.add("Spades 4");
     stringCards.add("Diamonds 5");
     stringCards.add("Hearts 9");
-    stringCards.add("Hearts 7");
+
+
 
 
     for (int i = 0; i < stringCards.size() ; i++) {
@@ -29,15 +39,24 @@ public class CardGameInstance {
             red = false;
         }
 
-
-
         Card cardIndex = new Card(words[0],findValueOfCard(words[1]),red);
-        visibleCard.add(cardIndex);
+
+        lists[i]=new ArrayList<>();
+        lists[i].add(cardIndex);
+
+
+
+
+
+
+
 
     }
 
 
-        System.out.println(Solver.solveGame(visibleCard));
+        Solver.solveGame(lists);
+        Solver.solveGame(lists);
+        Solver.solveGame(lists);
 }
 
 
